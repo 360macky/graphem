@@ -1,0 +1,18 @@
+{
+  "name": "graphem",
+  "version": "1.0.0",
+  "description": "NASA Open MCT plugin",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": {
+    "name": "Marcelo Arias",
+    "email": "hello@marceloarias.com",
+    "url": "https://marceloarias.com"
+  },
+  "devDependencies": {
+    "typescript": "^4.8.3"
+  }
+}
