@@ -3,8 +3,13 @@
   "version": "1.0.0",
   "description": "NASA Open MCT plugin",
   "main": "src/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "/dist"
+  ],
   "scripts": {
     "publish:update": "npm publish --access public",
+    "format": "prettier --write .",
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublishOnly": "npm run build"
@@ -16,6 +21,7 @@
     "url": "https://marceloarias.com"
   },
   "devDependencies": {
+    "prettier": "2.7.1",
     "typescript": "^4.8.3"
   }
 }
