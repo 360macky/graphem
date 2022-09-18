@@ -1,1 +1,1 @@
-declare module 'hello-world-js';
+declare module "hello-world-js";
