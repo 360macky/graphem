@@ -35,5 +35,9 @@
   "dependencies": {
     "graphql-ws": "5.11.1",
     "hello-world-js": "^0.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/360macky/graphem"
   }
 }
