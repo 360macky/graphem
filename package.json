@@ -8,6 +8,7 @@
     "/dist"
   ],
   "scripts": {
+    "clean": "rimraf ./dist ./node_modules ./package-lock.json",
     "publish:update": "npm publish --access public",
     "format": "prettier --write .",
     "build": "rimraf dist && tsc && rollup -c rollup.config.js",
