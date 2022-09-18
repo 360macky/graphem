@@ -28,6 +28,7 @@
     "typescript": "^4.8.3"
   },
   "dependencies": {
+    "graphql-ws": "5.11.1",
     "hello-world-js": "^0.0.2"
   }
 }
