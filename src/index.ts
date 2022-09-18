@@ -1,17 +1,15 @@
-/**
- * @file Manages connection for real-time and historical data with GraphQL.
- * @author Marcelo Arias
- */
+// DO NOT INSTALL. This are alpha tests for flight.
 
-type GraphemConfiguration = {
-  namespace: string;
-  key: string;
-};
+import { hello } from "hello-world-js";
 
-const Graphem = (configuration: GraphemConfiguration) => {
-  return function install(openmct: any) {
-    console.log("Graphem is installed! (Alpha)");
-  };
-};
+const testVariable = 10;
 
-export default Graphem;
+(async () => {
+  console.log(hello());
+  const testApi = 'https://api.spacexdata.com/v5/launches/latest';
+  const response = await fetch(testApi);
+  const data = await response.json();
+  console.log(data);
+})();
+
+export default testVariable;
