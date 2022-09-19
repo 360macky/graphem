@@ -1,6 +1,6 @@
 {
   "name": "graphem",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "NASA Open MCT plugin",
   "main": "src/index.js",
   "types": "dist/index.d.ts",
@@ -34,8 +34,7 @@
     "typescript": "^4.8.3"
   },
   "dependencies": {
-    "graphql-ws": "5.11.1",
-    "hello-world-js": "^0.0.2"
+    "graphql-ws": "5.11.1"
   },
   "repository": {
     "type": "git",
