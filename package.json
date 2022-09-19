@@ -1,6 +1,6 @@
 {
   "name": "graphem",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "NASA Open MCT plugin",
   "main": "src/index.js",
   "types": "dist/index.d.ts",
