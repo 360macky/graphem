@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "clean": "rimraf ./dist ./node_modules ./package-lock.json",
-    "publish:update": "npm publish --access public",
+    "publish:update": "npm run lint && npm publish --access public",
     "format": "prettier --write .",
     "build": "npm run format && rimraf dist && tsc && rollup -c rollup.config.js",
     "test": "echo \"Error: no test specified\" && exit 1",
