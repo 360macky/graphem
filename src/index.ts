@@ -1,4 +1,8 @@
-// DO NOT INSTALL.
+/**
+ * @file Manages the connection between GraphQL and NASA Open MCT.
+ * @author Marcelo Arias
+ */
+
 import { createClient } from "graphql-ws";
 
 /**
