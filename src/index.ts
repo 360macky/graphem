@@ -112,23 +112,23 @@ export default function Graphem(configuration: IGraphemConfiguration) {
       key: configuration.key,
     };
     openmct.objects.addRoot(objectRoot);
-    let objectProvider: ObjectProvider = {
+    const objectProvider: ObjectProvider = {
       get: async (identifier: DomainObjectIdentifier) => {
         const dictionaryResponse = await fetch(configuration.dictionaryPath);
         const dictionary = await dictionaryResponse.json();
         if (identifier.key === configuration.key) {
           return {
-            identifier: identifier,
+            identifier,
             name: dictionary.name,
             type: OBJECT_TYPE.FOLDER,
             location: "ROOT",
           };
         } else {
-          let measurement = dictionary.measurements.find(
+          const measurement = dictionary.measurements.find(
             (m: Measurement) => m.key === identifier.key
           );
           return {
-            identifier: identifier,
+            identifier,
             name: measurement.name,
             type: configuration.telemetryName,
             telemetry: {
@@ -142,7 +142,7 @@ export default function Graphem(configuration: IGraphemConfiguration) {
 
     openmct.objects.addProvider(configuration.namespace, objectProvider);
 
-    let compositionProvider = {
+    const compositionProvider = {
       appliesTo: (domainObject: DomainObject) => {
         return (
           domainObject.identifier.namespace === configuration.namespace &&
@@ -170,7 +170,7 @@ export default function Graphem(configuration: IGraphemConfiguration) {
     });
 
     // Historical Telemetry provider
-    let historicalProvider = {
+    const historicalProvider = {
       supportsRequest: (domainObject: DomainObject) =>
         domainObject.type === configuration.telemetryName,
       request: async (
@@ -197,10 +197,10 @@ export default function Graphem(configuration: IGraphemConfiguration) {
     openmct.telemetry.addProvider(historicalProvider);
 
     // Realtime telemetry provider
-    let listener: any = {};
+    const listener: any = {};
 
     const onNextValue = (value: any, key: string) => {
-      let telemetryPoint = JSON.parse(value.data[key]);
+      const telemetryPoint = JSON.parse(value.data[key]);
       if (listener[telemetryPoint.id]) {
         listener[telemetryPoint.id](telemetryPoint);
       }
@@ -210,6 +210,7 @@ export default function Graphem(configuration: IGraphemConfiguration) {
       supportsSubscribe: (domainObject: DomainObject) =>
         domainObject.type === configuration.telemetryName,
       subscribe: (domainObject: DomainObject, callback: any) => {
+        /* tslint:disable:no-empty */
         let unsubscribeTelemetry = () => {};
         (async () => {
           await new Promise((resolve, reject) => {
