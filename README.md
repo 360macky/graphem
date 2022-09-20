@@ -54,7 +54,7 @@ openmct.install(Graphem({
     dictionaryPath: "/dictionary.json", // Path of dictionary
     telemetryName: "rocket.telemetry", // Name of telemetry
     subscriptionName: "formatted", // Name of the <GraphQL> subscription for historical telemetry
-    urn: "localhost:4000/graphql" // Source URN
+    urn: "localhost:4000/graphql" // Source URN (Uniform Resource Name)
 }));
 
 openmct.start();
@@ -67,6 +67,8 @@ The development of **Graphem** began by generating a prototype of how to build a
 The structure of Graphem will be the following. It is made up of a part to integrate domain objects with object provider and composition provider. Then require the historical data, to display it on the screen, and finally require the real-time data continuously to link them on the same screen.
 
 I was inspired by [NASA Spacecraft](https://github.com/nasa/openmct-tutorial) tutorial to develop these parts.
+
+Currently NASA Open MCT does not support TypeScript (see [these issues](https://github.com/nasa/openmct/issues?q=is%3Aissue+is%3Aopen+typescript)), but for a better development experience this plugin was built on it.
 
 ## 🤲 Contributing
 
