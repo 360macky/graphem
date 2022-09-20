@@ -1,7 +1,7 @@
 {
   "name": "graphem",
   "version": "1.0.4",
-  "description": "NASA Open MCT plugin",
+  "description": "Connector to integrate GraphQL to NASA OpenMCT in queries and subscriptions",
   "main": "src/index.js",
   "types": "dist/index.d.ts",
   "files": [
