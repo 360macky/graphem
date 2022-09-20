@@ -70,6 +70,8 @@ I was inspired by [NASA Spacecraft](https://github.com/nasa/openmct-tutorial) tu
 
 Currently NASA Open MCT does not support TypeScript (see [these issues](https://github.com/nasa/openmct/issues?q=is%3Aissue+is%3Aopen+typescript)), but for a better development experience this plugin was built on it.
 
+For better integration with the Graphem package it uses [RollUp](https://rollupjs.org/guide/en/), a module bundler, in the same style as [Open MCT YAMCS](https://github.com/evenstensberg/yamcs-openmct-plugin).
+
 ## 🤲 Contributing
 
 Do you would like to contribute? Do you want to be the author of a new feature? Awesome! please fork the repository and make changes as you like. [Pull requests](https://github.com/360macky/project-name/pulls) are warmly welcome.
