@@ -19,11 +19,11 @@
 
 Graphem is a plugin that allows viewing telemetry data in NASA Open MCT directly from a GraphQL server.
 
-- **NASA Open MCT** is a next-generation mission operations data visualization framework. Web-based, for desktop and mobile.
+- [**NASA Open MCT**](https://github.com/nasa/openmct) is a next-generation mission operations data visualization framework. Web-based, for desktop and mobile.
 
-- **GraphQL** is a query language for APIs and a runtime for fulfilling those queries with your existing data.
+- [**GraphQL**](https://github.com/graphql/graphql-js) is a query language for APIs and a runtime for fulfilling those queries with your existing data.
 
-🛃 All with support for TypeScript.
+🛃 All with support for [TypeScript](https://github.com/microsoft/TypeScript).
 
 ## 🪐 Installation
 
@@ -62,7 +62,7 @@ openmct.start();
 
 ## 📦 Development
 
-The development of **Graphem** began by generating a prototype of how to build a plugin that obtains basic GraphQL queries. Although I was able to use the [Apollo client](https://www.apollographql.com/docs/react/), I preferred to use the fetch API to get more lightness in the plugin.
+The development of **Graphem** began by generating a prototype of how to build a plugin that obtains basic GraphQL queries. Although I was able to use the [Apollo client](https://www.apollographql.com/docs/react/), I preferred to use the [fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) to get more lightness in the plugin.
 
 The structure of Graphem will be the following. It is made up of a part to integrate domain objects with object provider and composition provider. Then require the historical data, to display it on the screen, and finally require the real-time data continuously to link them on the same screen.
 
