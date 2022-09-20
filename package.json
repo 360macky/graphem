@@ -16,7 +16,13 @@
     "prepublishOnly": "npm run build",
     "lint": "tslint -p tsconfig.json"
   },
-  "keywords": [],
+  "keywords": [
+    "GraphQL",
+    "Plugin",
+    "GraphQL Subscriptions",
+    "NASA",
+    "NASA Open MCT"
+  ],
   "author": {
     "name": "Marcelo Arias",
     "email": "hello@marceloarias.com",
