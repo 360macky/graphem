@@ -60,6 +60,16 @@ openmct.install(Graphem({
 openmct.start();
 ```
 
+### 🛰 Create a GraphQL server
+
+In order to use Graphem correctly you can use the server template that we provide.
+
+[Template GraphQL server from Graphem](https://github.com/360macky/basic-graphql-server-open-mct/)
+
+This server has a query available to obtain historical telemetry values, and a subscription to obtain real-time telemetry values.
+
+It has minimal setup in TypeScript, and comes with Nodemon ideal for development on top of it.
+
 ## 📦 Development
 
 The development of **Graphem** began by generating a prototype of how to build a plugin that obtains basic GraphQL queries. Although I was able to use the [Apollo client](https://www.apollographql.com/docs/react/), I preferred to use the [fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) to get more lightness in the plugin.
