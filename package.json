@@ -1,6 +1,6 @@
 {
   "name": "graphem",
-  "version": "1.0.5",
+  "version": "2.0.0",
   "description": "Connector to integrate GraphQL to NASA OpenMCT in queries and subscriptions",
   "main": "src/index.js",
   "types": "dist/index.d.ts",
