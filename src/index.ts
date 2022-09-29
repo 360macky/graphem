@@ -64,6 +64,7 @@ type ObjectProvider = {
 /**
  * The Open MCT team has a /issue related to typing so the following types will be updated.
  * https://github.com/nasa/openmct/issues/5781
+ * https://github.com/nasa/openmct/issues/5778
  */
 interface IOpenMCT {
   objects: {
