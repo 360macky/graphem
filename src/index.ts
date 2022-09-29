@@ -23,6 +23,11 @@ interface IGraphemConfiguration {
   telemetryName: string;
   subscriptionName: string;
   urn: string;
+  telemetryType?: {
+    name: string;
+    description: string;
+    cssClass?: string;
+  };
 }
 
 type DomainObjectIdentifier = {
@@ -169,9 +174,11 @@ export default function Graphem(configuration: IGraphemConfiguration) {
     openmct.composition.addProvider(compositionProvider);
 
     openmct.types.addType(configuration.telemetryName, {
-      name: "Telemetry Point",
-      description: "Telemetry point with GraphQL server",
-      cssClass: "icon-telemetry",
+      name: configuration.telemetryType?.name || "Telemetry point",
+      description:
+        configuration.telemetryType?.description ||
+        "Telemetry point with GraphQL server",
+      cssClass: configuration.telemetryType?.cssClass || "icon-telemetry",
     });
 
     // Historical Telemetry provider
