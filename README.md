@@ -43,7 +43,47 @@ Once installed in your project you can integrate it using:
 <script src="node_modules/graphem/dist/index.js"></script>
 ```
 
-And finally you can connect the plugin with the necessary information from your GraphQL server.
+Before connecting the GraphQL server you will need a JSON dictionary file. This file contains the structure of the folder, how each subscription is managed, and the naming of the units. This is file is usually stored in the client.
+
+Here is a basic example with the `prop_happiness` object:
+
+```json
+// dictionary.json
+{
+    "name": "Name of the mission",
+    "key": "your_key",
+    "measurements": [
+        {
+            "name": "Happiness",
+            "key": "prop_happiness",
+            "values": [
+                {
+                    "key": "value",
+                    "name": "Value",
+                    "units": "kilograms",
+                    "format": "float",
+                    "min": 0,
+                    "max": 100,
+                    "hints": {
+                        "range": 1
+                    }
+                },
+                {
+                    "key": "utc",
+                    "source": "timestamp",
+                    "name": "Timestamp",
+                    "format": "utc",
+                    "hints": {
+                        "domain": 1
+                    }
+                }
+            ]
+        }
+    ]
+}
+```
+
+🔌 And finally you can connect the plugin with the necessary information from your GraphQL server.
 
 ```js
 ...
