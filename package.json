@@ -23,6 +23,10 @@
     "NASA",
     "NASA Open MCT"
   ],
+  "homepage": "https://www.graphem.space/",
+  "bugs": {
+    "url": "https://github.com/360macky/graphem/issues"
+  },
   "author": {
     "name": "Marcelo Arias",
     "email": "hello@marceloarias.com",
