@@ -112,6 +112,8 @@ It has minimal setup in TypeScript, and comes with Nodemon ideal for development
 
 ## 💻 Development
 
+### ✨ Structure
+
 Graphem's source code is written in TypeScript. This is a file with a default export function called Graphem. This Graphem function returns a function `install`.
 
 ```ts
@@ -123,9 +125,25 @@ export default function Graphem(configuration: IGraphemConfiguration) {
 
 I developed this following the [structure recommended by the NASA Open MCT documentation for plugins](https://nasa.github.io/openmct/plugins-documentation/). So the install function is the function that is executed when importing and using the plugin in a client with Open MCT.
 
-In both cases I use an interface to check the passed parameters. `IGraphemConfiguration` is defined at installation time and contains information about the connection between GraphQL and Open MCT.
+In both cases we use an interface to check the passed parameters. `IGraphemConfiguration` is defined at installation time and contains information about the connection between GraphQL and Open MCT.
 
 `IOpenMCT` instead is an interface to ensure intellisense over Open MCT functions. Since Open MCT is not written in TypeScript.
+
+### 👛 GraphQL Client Connection
+When installing Graphem we create a GraphQL client whose main purpose will be to provide real-time information about the data transferred.
+
+As the real-time transfer is established on [WebSocket](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API). A computer communications protocol that provides full-duplex communication channels.
+
+When establishing the connection we require the server address, this address can vary a lot in each use case, so it is established through the `URN` variable in the _Graphem_ configuration when installed.
+
+Also the `createClient` function comes from [`graphql-ws`](https://www.npmjs.com/package/graphql-ws) library.
+
+```ts
+const client = createClient({
+  webSocketImpl: WebSocket,
+  url: `ws://${configuration.urn}`,
+});
+```
 
 ## 🏛️ History
 
