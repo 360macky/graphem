@@ -50,36 +50,36 @@ Here is a basic example with the `prop_happiness` object:
 ```json
 // dictionary.json
 {
-    "name": "Name of the mission",
-    "key": "your_key",
-    "measurements": [
+  "name": "Name of the mission",
+  "key": "your_key",
+  "measurements": [
+    {
+      "name": "Happiness",
+      "key": "prop_happiness",
+      "values": [
         {
-            "name": "Happiness",
-            "key": "prop_happiness",
-            "values": [
-                {
-                    "key": "value",
-                    "name": "Value",
-                    "units": "kilograms",
-                    "format": "float",
-                    "min": 0,
-                    "max": 100,
-                    "hints": {
-                        "range": 1
-                    }
-                },
-                {
-                    "key": "utc",
-                    "source": "timestamp",
-                    "name": "Timestamp",
-                    "format": "utc",
-                    "hints": {
-                        "domain": 1
-                    }
-                }
-            ]
+          "key": "value",
+          "name": "Value",
+          "units": "kilograms",
+          "format": "float",
+          "min": 0,
+          "max": 100,
+          "hints": {
+            "range": 1
+          }
+        },
+        {
+          "key": "utc",
+          "source": "timestamp",
+          "name": "Timestamp",
+          "format": "utc",
+          "hints": {
+            "domain": 1
+          }
         }
-    ]
+      ]
+    }
+  ]
 }
 ```
 
@@ -110,7 +110,24 @@ This server has a query available to obtain historical telemetry values, and a s
 
 It has minimal setup in TypeScript, and comes with Nodemon ideal for development on top of it.
 
-## 📦 Development
+## 💻 Development
+
+Graphem's source code is written in TypeScript. This is a file with a default export function called Graphem. This Graphem function returns a function `install`.
+
+```ts
+export default function Graphem(configuration: IGraphemConfiguration) {
+  ...
+  return function install(openmct: IOpenMCT) {
+    ...
+```
+
+I developed this following the [structure recommended by the NASA Open MCT documentation for plugins](https://nasa.github.io/openmct/plugins-documentation/). So the install function is the function that is executed when importing and using the plugin in a client with Open MCT.
+
+In both cases I use an interface to check the passed parameters. `IGraphemConfiguration` is defined at installation time and contains information about the connection between GraphQL and Open MCT.
+
+`IOpenMCT` instead is an interface to ensure intellisense over Open MCT functions. Since Open MCT is not written in TypeScript.
+
+## 🏛️ History
 
 The development of **Graphem** began by generating a prototype of how to build a plugin that obtains basic GraphQL queries. Although I was able to use the [Apollo client](https://www.apollographql.com/docs/react/), I preferred to use the [fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) to get more lightness in the plugin.
 
