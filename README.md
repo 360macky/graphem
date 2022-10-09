@@ -129,7 +129,28 @@ In both cases we use an interface to check the passed parameters. `IGraphemConfi
 
 `IOpenMCT` instead is an interface to ensure intellisense over Open MCT functions. Since Open MCT is not written in TypeScript.
 
+### ⚙️ Configuration Object
+
+The configuration object of Graphem is a parameter that contains relevant information to start with the plugin. This object is defined by the `IGraphemConfiguration` interface. Some fields are necessary, and others are optional.
+
+```ts
+interface IGraphemConfiguration {
+  namespace: string;
+  key: string;
+  dictionaryPath: string;
+  telemetryName: string;
+  subscriptionName: string;
+  urn: string;
+  telemetryType?: {
+    name: string;
+    description: string;
+    cssClass?: string;
+  };
+}
+```
+
 ### 👛 GraphQL Client Connection
+
 When installing Graphem we create a GraphQL client whose main purpose will be to provide real-time information about the data transferred.
 
 As the real-time transfer is established on [WebSocket](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API). A computer communications protocol that provides full-duplex communication channels.
