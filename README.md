@@ -160,8 +160,8 @@ interface IGraphemConfiguration {
 }
 ```
 
+### GraphQL Client Connection
 
-### 👛 GraphQL Client Connection
 
 When installing Graphem we create a GraphQL client whose main purpose will be to provide real-time information about the data transferred.
 
