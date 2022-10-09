@@ -13,6 +13,11 @@
   🚀 Connector to integrate <a href="https://graphql.org/" target="_blank">GraphQL</a> to <a href="https://nasa.github.io/openmct/" target="_blank">NASA OpenMCT</a> in <a href="https://graphql.org/learn/queries/" target="_blank">queries</a> and <a href="https://www.apollographql.com/docs/react/data/subscriptions/" target="_blank">subscriptions</a>. ⏰
 </p>
 
+<p align="center">
+  <a href="https://github.com/enisdenjo/graphql-ws"><img src="https://img.shields.io/static/v1?label=GraphQL&message=v16.6.6&color=E10098&logo=graphql&style=flat-square" /></a>
+  <a href="https://github.com/enisdenjo/graphql-ws"><img src="https://img.shields.io/static/v1?label=NASA%20Open%20MCT&message=v2.1.2&color=E03C31&logo=nasa&style=flat-square" /></a>
+</p>
+
 ![Demo of Graphem](./.github/demo.jpg)
 
 ## 🚀 Concept
