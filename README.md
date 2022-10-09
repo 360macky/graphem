@@ -160,7 +160,7 @@ interface IGraphemConfiguration {
 }
 ```
 
-### GraphQL Client Connection
+### 🎟 GraphQL Client Connection
 
 
 When installing Graphem we create a GraphQL client whose main purpose will be to provide real-time information about the data transferred.
@@ -188,6 +188,42 @@ const objectRoot = {
   key: configuration.key,
 };
 openmct.objects.addRoot(objectRoot);
+```
+
+### 🧭 Object Provider
+
+The object provider will build **Domain Objects**. The structure of the Domain Objects comes from the dictionary.
+
+```ts
+const objectProvider: ObjectProvider = {
+  get: async (identifier: DomainObjectIdentifier) => {
+    const dictionaryResponse = await fetch(configuration.dictionaryPath);
+    const dictionary = await dictionaryResponse.json();
+    if (identifier.key === configuration.key) {
+      return {
+        identifier,
+        name: dictionary.name,
+        type: OBJECT_TYPE.FOLDER,
+        location: "ROOT",
+      };
+    } else {
+      const measurement = dictionary.measurements.find(
+        (m: Measurement) => m.key === identifier.key
+      );
+      return {
+        identifier,
+        name: measurement.name,
+        type: configuration.telemetryName,
+        telemetry: {
+          values: measurement.values,
+        },
+        location: `${configuration.namespace}:${configuration.key}`,
+      };
+    }
+  },
+};
+
+openmct.objects.addProvider(configuration.namespace, objectProvider);
 ```
 
 ## 🏛️ History
