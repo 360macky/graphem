@@ -18,6 +18,10 @@
   <a href="https://github.com/enisdenjo/graphql-ws"><img src="https://img.shields.io/static/v1?label=NASA%20Open%20MCT&message=v2.1.2&color=E03C31&logo=nasa&style=flat-square" /></a>
 </p>
 
+<p align="center">
+  🚀 <a href="https://www.graphem.space">www.graphem.space</a> 🪐
+</p>
+
 ![Demo of Graphem](./.github/demo.jpg)
 
 ## 🚀 Concept
@@ -32,28 +36,30 @@ Graphem is a plugin that allows viewing telemetry data in NASA Open MCT directly
 
 ## 🪐 Installation
 
-You can install the plugin from your favorite package manager:
+You can install Graphem from your favorite package manager:
 
 ```bash
-# Yarn way
+# Yarn
 yarn add graphem
+```
 
-# NPM way
+```bash
+# NPM
 npm install graphem
 ```
 
-Once installed in your project you can integrate it using:
+Once installed in your project you can integrate it in the `<head>` tag using:
 
 ```html
 <script src="node_modules/graphem/dist/index.js"></script>
 ```
 
-Before connecting the GraphQL server you will need a JSON dictionary file. This file contains the structure of the folder, how each subscription is managed, and the naming of the units. This is file is usually stored in the client.
+Before connecting the GraphQL server you will need a `JSON` dictionary file. This file contains the structure of the folder, how each subscription is managed, and the naming of the units. This is file is usually stored in the client.
 
 Here is a basic example with the `prop_happiness` object:
 
 ```json
-// dictionary.json
+/* dictionary.json */
 {
   "name": "Name of the mission",
   "key": "your_key",
@@ -169,6 +175,18 @@ const client = createClient({
   webSocketImpl: WebSocket,
   url: `ws://${configuration.urn}`,
 });
+```
+
+### 🌳 Root creation
+
+Before connection and population of data, Graphem will set a **new object root**. This process will [expose a telemetry folder as a hierarchy of telemetry-providing domain objects](https://github.com/nasa/openmct/blob/master/API.md#root-objects).
+
+```ts
+const objectRoot = {
+  namespace: configuration.namespace,
+  key: configuration.key,
+};
+openmct.objects.addRoot(objectRoot);
 ```
 
 ## 🏛️ History
