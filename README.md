@@ -125,7 +125,7 @@ It has minimal setup in TypeScript, and comes with Nodemon ideal for development
 
 ### ✨ Structure
 
-Graphem's source code is written in TypeScript. This is a file with a default export function called Graphem. This Graphem function returns a function `install`.
+Graphem's source code is written in [TypeScript](https://github.com/microsoft/TypeScript). This is a file with a default export function called Graphem. This Graphem function returns a function `install`.
 
 ```ts
 export default function Graphem(configuration: IGraphemConfiguration) {
@@ -163,7 +163,7 @@ interface IGraphemConfiguration {
 ### 🎟 GraphQL Client Connection
 
 
-When installing Graphem we create a GraphQL client whose main purpose will be to provide real-time information about the data transferred.
+When installing Graphem we create a [GraphQL client](https://graphql.org/graphql-js/graphql-clients/) whose main purpose will be to provide [real-time information](https://en.wikipedia.org/wiki/Real-time) about the data transferred.
 
 As the real-time transfer is established on [WebSocket](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API). A computer communications protocol that provides full-duplex communication channels.
 
@@ -228,13 +228,13 @@ openmct.objects.addProvider(configuration.namespace, objectProvider);
 
 ## 🏛️ History
 
-The development of **Graphem** began by generating a prototype of how to build a plugin that obtains basic GraphQL queries. Although I was able to use the [Apollo client](https://www.apollographql.com/docs/react/), I preferred to use the [fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) to get more lightness in the plugin.
+The development of **Graphem** began by generating a prototype of how to build a plugin that obtains basic [GraphQL queries](https://graphql.org/learn/queries/). Although I was able to use the [Apollo client](https://www.apollographql.com/docs/react/), I preferred to use the [fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) to get more lightness in the plugin.
 
 The structure of Graphem will be the following. It is made up of a part to integrate domain objects with object provider and composition provider. Then require the historical data, to display it on the screen, and finally require the real-time data continuously to link them on the same screen.
 
 I was inspired by [NASA Spacecraft](https://github.com/nasa/openmct-tutorial) tutorial to develop these parts.
 
-Currently NASA Open MCT does not support TypeScript (see [these issues](https://github.com/nasa/openmct/issues?q=is%3Aissue+is%3Aopen+typescript)), but for a better development experience this plugin was built on it.
+Currently NASA Open MCT does not support [TypeScript](https://github.com/microsoft/TypeScript) (see [these issues](https://github.com/nasa/openmct/issues?q=is%3Aissue+is%3Aopen+typescript)), but for a better development experience this plugin was built on it.
 
 For better integration with the Graphem package it uses [RollUp](https://rollupjs.org/guide/en/), a module bundler, in the same style as [Open MCT YAMCS](https://github.com/evenstensberg/yamcs-openmct-plugin). Thanks to this same configuration, it will export a file in UMD ([Universal Module Definition](https://github.com/umdjs/umd)) format.
 
