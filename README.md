@@ -226,6 +226,39 @@ const objectProvider: ObjectProvider = {
 openmct.objects.addProvider(configuration.namespace, objectProvider);
 ```
 
+## 🗂 Composition Provider
+
+This is a crucial part of Graphem. While Open MCT provides a solution for a composition provider, in Graphem we define a custom composition provider.
+
+Every provider has `appliesTo` and `load` methods.
+
+The `appliesTo` method will filter domain objects by the namespace specified in the configuration parameter, and by the type of `FOLDER`.
+
+After that we load (from the `load` method) the mesaurements objects from the JSON dictionary. This process starts requesting the object from a `dictionaryPath` (provided by the NASA developer) and then destructuring each object returning the `key` property with the `namespace` as a whole object in an array.
+
+```ts
+const compositionProvider = {
+  appliesTo: (domainObject: DomainObject) => {
+    return (
+      domainObject.identifier.namespace === configuration.namespace &&
+      domainObject.type === OBJECT_TYPE.FOLDER
+    );
+  },
+  load: async () => {
+    const dictionaryResponse = await fetch(configuration.dictionaryPath);
+    const dictionary = (await dictionaryResponse.json()) as IDictionary;
+    return dictionary.measurements.map((m: Measurement) => {
+      return {
+        namespace: configuration.namespace,
+        key: m.key,
+      };
+    });
+  },
+};
+
+openmct.composition.addProvider(compositionProvider);
+```
+
 ## 🏛️ History
 
 The development of **Graphem** began by generating a prototype of how to build a plugin that obtains basic [GraphQL queries](https://graphql.org/learn/queries/). Although I was able to use the [Apollo client](https://www.apollographql.com/docs/react/), I preferred to use the [fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) to get more lightness in the plugin.
