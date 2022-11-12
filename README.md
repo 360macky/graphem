@@ -192,7 +192,7 @@ openmct.objects.addRoot(objectRoot);
 
 ### 🧭 Object Provider
 
-The object provider will build **Domain Objects**. The structure of the Domain Objects comes from the dictionary.
+The object provider will build **[Domain Objects](https://github.com/nasa/openmct/blob/master/API.md#domain-objects-and-identifiers)**. The structure of the Domain Objects comes from the dictionary.
 
 ```ts
 const objectProvider: ObjectProvider = {
