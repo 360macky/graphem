@@ -54,7 +54,7 @@ Once installed in your project you can integrate it in the `<head>` tag using:
 <script src="node_modules/graphem/dist/index.js"></script>
 ```
 
-Before connecting the GraphQL server you will need a `JSON` dictionary file. This file contains the structure of the folder, how each subscription is managed, and the naming of the units. This is file is usually stored in the client.
+Before connecting the GraphQL server you will need a `JSON` dictionary file. This file contains the structure of the folder, how each subscription is managed, and the naming of the units. This file is usually stored in the client.
 
 Here is a basic example with the `prop_happiness` object:
 
