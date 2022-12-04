@@ -30,13 +30,13 @@ Graphem is a plugin that allows viewing telemetry data in NASA Open MCT directly
 
 - [**NASA Open MCT**](https://github.com/nasa/openmct) is a next-generation mission operations data visualization framework. Web-based, for desktop and mobile.
 
-- [**GraphQL**](https://github.com/graphql/graphql-js) is a query language for APIs and a runtime for fulfilling those queries with your existing data.
+- [**GraphQL**](https://github.com/graphql/graphql-js) is a query language for APIs and a runtime for fulfilling those queries with your existing data. A [**GraphQL server**](https://graphql.org/learn/#gatsby-focus-wrapper) provides a way to expose your data to clients using the GraphQL query language.
 
 🛃 All with support for [TypeScript](https://github.com/microsoft/TypeScript).
 
 ## 🪐 Installation
 
-You can install Graphem from your favorite package manager:
+Install Graphem from your favorite package manager:
 
 ```bash
 # Yarn
@@ -48,13 +48,13 @@ yarn add graphem
 npm install graphem
 ```
 
-Once installed in your project you can integrate it in the `<head>` tag using:
+Integrate Graphem in the `<head>` tag of your HTML file using:
 
 ```html
 <script src="node_modules/graphem/dist/index.js"></script>
 ```
 
-Before connecting the GraphQL server you will need a `JSON` dictionary file. This file contains the structure of the folder, how each subscription is managed, and the naming of the units. This file is usually stored in the client.
+You will need a `JSON` dictionary file before connecting the GraphQL server. This file contains the structure of the folder, how each subscription is managed, and the naming of the units. This file is usually stored in the client.
 
 Here is a basic example with the `prop_happiness` object:
 
@@ -94,18 +94,27 @@ Here is a basic example with the `prop_happiness` object:
 }
 ```
 
-🔌 And finally you can connect the plugin with the necessary information from your GraphQL server.
+🔌 Connect the plugin with the necessary information from your GraphQL server.
+
+Set the following properties as an object in the Graphem function:
+
+* **Namespace:** Custom namespace. The value of the property will be the same as in the JSON dictionary file. Example: `"rocket.taxonomy"`.
+* **Key:** Custom key. The value of the property will be the same as in the JSON dictionary file. Example: `"orion"`.
+* **Dictionary path:** The location where you store the JSON dictionary file. Example: `"/dictionary.json"`.
+* **Telemetry name:** The value of the property will be the same as in the JSON dictionary file. Name of your telemetry module. Example: `"rocket.telemetry"`.
+* **Subscription name:** Name of the GraphQL subscription to fetch historical telemetry. Example: `"formatted"`.
+* **URN:** URN (Uniform Resource Name) of the GraphQL endpoint. Without HTTP/HTTPS. Example: `"localhost:4000/graphql"`.
 
 ```js
 ...
 
 openmct.install(Graphem({
-    namespace: "rocket.taxonomy", // Custom namespace
-    key: "orion", // Custom Key
-    dictionaryPath: "/dictionary.json", // Path of dictionary
-    telemetryName: "rocket.telemetry", // Name of telemetry
-    subscriptionName: "formatted", // Name of the <GraphQL> subscription for historical telemetry
-    urn: "localhost:4000/graphql" // Source URN (Uniform Resource Name)
+    namespace: "rocket.taxonomy",
+    key: "orion",
+    dictionaryPath: "/dictionary.json",
+    telemetryName: "rocket.telemetry",
+    subscriptionName: "formatted",
+    urn: "localhost:4000/graphql"
 }));
 
 openmct.start();
@@ -136,13 +145,13 @@ export default function Graphem(configuration: IGraphemConfiguration) {
 
 I developed this following the [structure recommended by the NASA Open MCT documentation for plugins](https://nasa.github.io/openmct/plugins-documentation/). So the install function is the function that is executed when importing and using the plugin in a client with Open MCT.
 
-In both cases we use an interface to check the passed parameters. `IGraphemConfiguration` is defined at installation time and contains information about the connection between GraphQL and Open MCT.
+In both cases we inherit an interface to check the passed parameters. `IGraphemConfiguration` is defined at installation time and contains information about the connection between GraphQL and Open MCT.
 
 `IOpenMCT` instead is an interface to ensure intellisense over Open MCT functions. Since Open MCT is not written in TypeScript.
 
 ### ⚙️ Configuration Object
 
-The configuration object of Graphem is a parameter that contains relevant information to start with the plugin. This object is defined by the `IGraphemConfiguration` interface. Some fields are necessary, and others are optional.
+The configuration object of Graphem is a parameter that contains relevant information to set up with the plugin. This object is defined by the `IGraphemConfiguration` interface. Some fields are necessary, and others are optional.
 
 ```ts
 interface IGraphemConfiguration {
@@ -259,6 +268,23 @@ const compositionProvider = {
 openmct.composition.addProvider(compositionProvider);
 ```
 
+## ✋ Contribution Guide
+
+Graphem is an Open Source projects that is activately looking for contributors to enhance the developer experience of NASA Open MCT developers.
+
+If you have any feature in mind, or just want to contribute to this Open Source project please check the Issues section in this repository or create your own. Also you can fork the repository and make changes as you like. [Pull requests](https://github.com/360macky/project-name/pulls) are warmly welcome.
+
+If you have questions about this process post it on the [Discussions section](https://github.com/360macky/graphem/discussions)!
+
+### 🐛 Bug Report
+
+If you find any bug in Graphem, please report it:
+
+1. Go to [Issues](https://github.com/360macky/graphem/issues/new/choose) section.
+2. Click on **New Issue** button.
+3. Check "Bug report" option and click on **Get Started**.
+4. Follow the steps described in the template.
+
 ## 🏛️ History
 
 The development of **Graphem** began by generating a prototype of how to build a plugin that obtains basic [GraphQL queries](https://graphql.org/learn/queries/). Although I was able to use the [Apollo client](https://www.apollographql.com/docs/react/), I preferred to use the [fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) to get more lightness in the plugin.
@@ -270,10 +296,6 @@ I was inspired by [NASA Spacecraft](https://github.com/nasa/openmct-tutorial) tu
 Currently NASA Open MCT does not support [TypeScript](https://github.com/microsoft/TypeScript) (see [these issues](https://github.com/nasa/openmct/issues?q=is%3Aissue+is%3Aopen+typescript)), but for a better development experience this plugin was built on it.
 
 For better integration with the Graphem package it uses [RollUp](https://rollupjs.org/guide/en/), a module bundler, in the same style as [Open MCT YAMCS](https://github.com/evenstensberg/yamcs-openmct-plugin). Thanks to this same configuration, it will export a file in UMD ([Universal Module Definition](https://github.com/umdjs/umd)) format.
-
-## 🤲 Contributing
-
-Do you would like to contribute? Do you want to be the author of a new feature? Awesome! please fork the repository and make changes as you like. [Pull requests](https://github.com/360macky/project-name/pulls) are warmly welcome.
 
 ## 📃 License
 
