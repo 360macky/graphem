@@ -124,7 +124,7 @@ openmct.start();
 
 In order to use Graphem correctly you can use the server template that we provide.
 
-[Template GraphQL server from Graphem](https://github.com/360macky/basic-graphql-server-open-mct/)
+[Template GraphQL server from Graphem](https://github.com/360macky/graphem-template-app)
 
 This server has a query available to obtain historical telemetry values, and a subscription to obtain real-time telemetry values.
 
