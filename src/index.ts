@@ -15,6 +15,7 @@ import { createClient } from "graphql-ws";
  * @field {string} Name of telemetry
  * @field {string} Name of the GraphQL-WS subscription for historical telemetry
  * @field {string} Source URN (for example: `localhost:4000/graphql`)
+ * @field {boolean} Debug flag to enable console logging for development
  */
 interface IGraphemConfiguration {
   namespace: string;
@@ -28,6 +29,7 @@ interface IGraphemConfiguration {
     description: string;
     cssClass?: string;
   };
+  debug?: boolean;
 }
 
 type DomainObjectIdentifier = {
@@ -115,7 +117,15 @@ export default function Graphem(configuration: IGraphemConfiguration) {
     url: `ws://${configuration.urn}`,
   });
 
+  const debugLog = (message: string) => {
+    if (configuration.debug) {
+      console.log(message);
+    }
+  };
+
   return function install(openmct: IOpenMCT) {
+    debugLog("Installing Graphem plugin...");
+
     // Configuration of folder with telemetry point items.
     const objectRoot = {
       namespace: configuration.namespace,
@@ -124,6 +134,9 @@ export default function Graphem(configuration: IGraphemConfiguration) {
     openmct.objects.addRoot(objectRoot);
     const objectProvider: ObjectProvider = {
       get: async (identifier: DomainObjectIdentifier) => {
+        debugLog(
+          `Getting object with identifier: ${JSON.stringify(identifier)}`
+        );
         const dictionaryResponse = await fetch(configuration.dictionaryPath);
         const dictionary = await dictionaryResponse.json();
         if (identifier.key === configuration.key) {
@@ -193,6 +206,7 @@ export default function Graphem(configuration: IGraphemConfiguration) {
           query: `{ ${configuration.subscriptionName} (domainObjectKey: "${domainObject.identifier.key}", start: "${options.start}", end: "${options.end}") }`,
         };
         const graphqlQueryBody = JSON.stringify(graphqlQuery);
+        debugLog(`Sending historical request: ${graphqlQueryBody}`);
         const historicalResponse = await fetch(`http://${configuration.urn}`, {
           method: "POST",
           headers: {
@@ -214,6 +228,9 @@ export default function Graphem(configuration: IGraphemConfiguration) {
     const onNextValue = (value: any, key: string) => {
       const telemetryPoint = JSON.parse(value.data[key]);
       if (listener[telemetryPoint.id]) {
+        debugLog(
+          `Received realtime telemetry: ${JSON.stringify(telemetryPoint)}`
+        );
         listener[telemetryPoint.id](telemetryPoint);
       }
     };
@@ -242,6 +259,9 @@ export default function Graphem(configuration: IGraphemConfiguration) {
 
         listener[domainObject.identifier.key] = callback;
         return function unsubscribe() {
+          debugLog(
+            `Unsubscribing from telemetry: ${domainObject.identifier.key}`
+          );
           unsubscribeTelemetry();
           delete listener[domainObject.identifier.key];
         };
