@@ -98,12 +98,12 @@ Here is a basic example with the `prop_happiness` object:
 
 Set the following properties as an object in the Graphem function:
 
-* **Namespace:** Custom namespace. The value of the property will be the same as in the JSON dictionary file. Example: `"rocket.taxonomy"`.
-* **Key:** Custom key. The value of the property will be the same as in the JSON dictionary file. Example: `"orion"`.
-* **Dictionary path:** The location where you store the JSON dictionary file. Example: `"/dictionary.json"`.
-* **Telemetry name:** The value of the property will be the same as in the JSON dictionary file. Name of your telemetry module. Example: `"rocket.telemetry"`.
-* **Subscription name:** Name of the GraphQL subscription to fetch historical telemetry. Example: `"formatted"`.
-* **URN:** URN (Uniform Resource Name) of the GraphQL endpoint. Without HTTP/HTTPS. Example: `"localhost:4000/graphql"`.
+- **Namespace:** Custom namespace. The value of the property will be the same as in the JSON dictionary file. Example: `"rocket.taxonomy"`.
+- **Key:** Custom key. The value of the property will be the same as in the JSON dictionary file. Example: `"orion"`.
+- **Dictionary path:** The location where you store the JSON dictionary file. Example: `"/dictionary.json"`.
+- **Telemetry name:** The value of the property will be the same as in the JSON dictionary file. Name of your telemetry module. Example: `"rocket.telemetry"`.
+- **Subscription name:** Name of the GraphQL subscription to fetch historical telemetry. Example: `"formatted"`.
+- **URN:** URN (Uniform Resource Name) of the GraphQL endpoint. Without HTTP/HTTPS. Example: `"localhost:4000/graphql"`.
 
 ```js
 ...
@@ -170,7 +170,6 @@ interface IGraphemConfiguration {
 ```
 
 ### 🎟 GraphQL Client Connection
-
 
 When installing Graphem we create a [GraphQL client](https://graphql.org/graphql-js/graphql-clients/) whose main purpose will be to provide [real-time information](https://en.wikipedia.org/wiki/Real-time) about the data transferred.
 
